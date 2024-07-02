@@ -2,7 +2,7 @@
 #body {
     height: 100%;
     width: 100%;
-
+    overflow: hidden;
 }
 #allSvg {
     height: 100%;
@@ -11,11 +11,13 @@
 path {
     fill: #D3D3D3;
 }
-.inactive {
-    fill: #D3D3D3;
+path:hover {
+    fill: #FAF9F6;
+    stroke: #160E1C;
+    stroke-width: 2px;
 }
-.active {   
-    fill: #71797E;
+.clicked {
+    fill: #ebecf0;
 }
 .appContainer {
     width: 100%;
@@ -30,11 +32,42 @@ path {
     justify-content: center;
     object-fit:contain;
 }  
+.menu {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 10px 20px;
+    background-color: #D3D3D3;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(10, 10, 10, 0.2);
+}
+.menuSearch {
+    position: fixed;
+    bottom: 20px;
+    left: 10px; 
+    z-index: 1000;
+    padding: 10px 20px;
+    background-color: #D3D3D3;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(10, 10, 10, 0.2);
+}
+.countryListButton {
+    background-color: rgba(22, 14, 28, 0.8);
+    width: 100%;
+    color: white;
+    border: none;
+    font-size: large;
+}
 .sidenavDiv {
     padding: 20px;
     background-color: transparent;
     width: 20%;
     color: white;
+    overflow:hidden;
 }
 .sidenavDiv h1 {
     text-align: center;
@@ -57,9 +90,11 @@ path {
 .allPaths {
     cursor: pointer;
 }
-@media (max-width:1536) {
-    #allSvg {
-        height: 100%;
-        width: 1536px;
+.active {
+    fill: gray;
+}
+@media (max-width:1300px) {
+    .sidenavDiv {
+        width: 259px;
     }
 }

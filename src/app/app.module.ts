@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,11 +11,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatMenuModule} from '@angular/material/menu';
+import { FilterPipe } from './filter.pipe';
+import {Sort, MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatButtonModule,
     HttpClientModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatMenuModule,
+    MatSortModule,
   ],
   providers: [
     provideClientHydration(),
