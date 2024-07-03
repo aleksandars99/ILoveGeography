@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { countries } from './countries';
-import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +21,7 @@ export class CountriesService  {
   returnCountryNames(): Observable<countries[]> {
     return this.http.get<countries[]>(this.apiNames);
   }
+
+  
   
 }

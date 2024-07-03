@@ -1,0 +1,34 @@
+<!-- <h1 mat-dialog-title>{{countryData.name}}</h1> -->
+<mat-dialog-content class="mat-typography grid-container">
+    <div class="left">
+        <mat-form-field *ngIf="cities.length > 0">
+            <mat-label>Select a city</mat-label>
+            <mat-select [(value)]="selectedCity" (selectionChange)="onCitySelectionChange()">
+                <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <p *ngIf="selectedCity">You have selected: {{selectedCity}}</p>
+    </div>
+    <div class="right">
+        <h1>{{selectedCountry}}</h1>
+
+        @if (weatherData) {
+            <h2>{{weatherData.name}}</h2>
+            
+
+            <p><b>Current temperature: </b><span>{{weatherData.main.temp}}°C</span></p>
+            <p><b>Feels like:: </b><span>{{weatherData.main.feels_like}}°C</span></p>
+            <p><b>Minimal temperature: </b><span>{{weatherData.main.temp_min}}°C</span></p>
+            <p><b>Maximal temperature: </b><span>{{weatherData.main.temp_max}}°C</span></p>
+            <p><b>Air presure: </b><span>{{weatherData.main.pressure}}mb</span></p>
+            <p><b>Humidity: </b><span>{{weatherData.main.humidity}}%</span></p>
+            <p><b>Wind speed: </b><span>{{weatherData.wind.speed}}m/s</span></p>
+            <p><b>Sunrise: </b><span>{{convertTimestampToTime(weatherData.sys.sunrise)}}</span></p>
+            <p><b>Sunset: </b><span>{{convertTimestampToTime(weatherData.sys.sunset)}}</span></p>
+        }
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions>

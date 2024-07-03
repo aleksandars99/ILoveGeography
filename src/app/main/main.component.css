@@ -69,6 +69,12 @@ path:hover {
     color: white;
     overflow:hidden;
 }
+.dialogButton {
+    padding-left: 0;
+}
+.dialogButton b {
+    color:white !important;
+}
 .sidenavDiv h1 {
     text-align: center;
 }

@@ -1,8 +1,11 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild, viewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild, inject, viewChild } from '@angular/core';
 import { countries } from '../countries';
 import { CountriesService } from '../countries.service';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
+import { MatDialog } from '@angular/material/dialog';
+import { WeatherComponent } from '../weather/weather.component';
+import { WeatherService } from '../weather.service';
 
 
 @Component({
@@ -14,7 +17,7 @@ export class MainComponent implements OnInit {
   @ViewChild('drawer') drawer: MatSidenav;
   @ViewChild('drawer2') drawer2: MatSidenav;
   // countryData:any
-  constructor(private countriesService: CountriesService, private route:Router, private renderer: Renderer2, private el: ElementRef) {
+  constructor(private countriesService: CountriesService, private route:Router, private renderer: Renderer2, private el: ElementRef, private weatherService: WeatherService) {
 
   }
   ngOnInit(): void {
@@ -41,6 +44,8 @@ export class MainComponent implements OnInit {
     }) 
 
     
+
+    
   }
 
   showsidenav = false
@@ -58,12 +63,30 @@ export class MainComponent implements OnInit {
     })
     this.drawer.toggle()
 
-    //remove spaces
-    var countryWithoutSpaces = country.split(' ').join('-')
-    // const elements = this.el.nativeElement.querySelectorAll(`#${countryWithoutSpaces}`);
-    // elements.forEach((element:any) => {
-    //   this.renderer.addClass(element, 'active');
-    // });
+    this.weatherService.selectedCountry = country;
+    console.log(this.weatherService.selectedCountry)
+  }
+  showMore2(country: any, city:string) {
+    this.countriesService.getCountry(country).subscribe(data => {
+      this.countryList = data[0];
+      console.log(this.countryList)
+    })
+    this.drawer.toggle()
+
+    this.weatherService.selectedCountry = country;
+    console.log(this.weatherService.selectedCountry)
+
+    this.weatherService.getWeather(city).subscribe(data => {
+       this.weatherService.countryData = data;
+       console.log(this.weatherService.countryData)
+     })
+  }
+  returnWeather(cityName:string) {
+    this.weatherService.getWeather(cityName).subscribe(data => {
+      console.log(data)
+      this.weatherService.selectedCountry = data
+      console.log(this.weatherService.selectedCountry)
+    })
   }
 
   //number formated from 10527356 to 10,527,356
@@ -97,6 +120,14 @@ export class MainComponent implements OnInit {
     this.drawer2.toggle();
   }
 
+  readonly dialog = inject(MatDialog);
+  openDialog() {
+    const dialogRef = this.dialog.open(WeatherComponent, {height:'60%', width:'60%'});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   
 }

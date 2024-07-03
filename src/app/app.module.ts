@@ -14,12 +14,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
 import { FilterPipe } from './filter.pipe';
 import {Sort, MatSortModule} from '@angular/material/sort';
+import {MatDialogModule} from '@angular/material/dialog';
+import { WeatherComponent } from './weather/weather.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    FilterPipe
+    FilterPipe,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import {Sort, MatSortModule} from '@angular/material/sort';
     MatFormFieldModule,
     MatMenuModule,
     MatSortModule,
+    MatDialogModule,
   ],
   providers: [
     provideClientHydration(),
