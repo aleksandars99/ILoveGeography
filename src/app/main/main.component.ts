@@ -65,22 +65,25 @@ export class MainComponent implements OnInit {
 
     this.weatherService.selectedCountry = country;
     console.log(this.weatherService.selectedCountry)
-  }
-  showMore2(country: any, city:string) {
-    this.countriesService.getCountry(country).subscribe(data => {
-      this.countryList = data[0];
-      console.log(this.countryList)
+
+    if (country === 'United States') {
+        country = 'USA';
+    }
+    if (country === 'Bosnia and Herzegovina') {
+      country = 'Bosnia'
+    }
+
+    const countryId = country.replace(/\s+/g, '');
+    const elements = this.el.nativeElement.querySelectorAll(`[id*="${countryId}"]`);
+    const activeElements = this.el.nativeElement.querySelectorAll('.active');
+    activeElements.forEach((element:any) => {
+      this.renderer.removeClass(element, 'active')
     })
-    this.drawer.toggle()
-
-    this.weatherService.selectedCountry = country;
-    console.log(this.weatherService.selectedCountry)
-
-    this.weatherService.getWeather(city).subscribe(data => {
-       this.weatherService.countryData = data;
-       console.log(this.weatherService.countryData)
-     })
+    elements.forEach((element: any) => {
+      this.renderer.addClass(element, 'active');
+    });
   }
+  
   returnWeather(cityName:string) {
     this.weatherService.getWeather(cityName).subscribe(data => {
       console.log(data)

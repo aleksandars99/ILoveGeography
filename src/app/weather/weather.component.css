@@ -1,22 +1,37 @@
-* {
-    /* background-color: #D3D3D3; */
-    border-radius: 10px;
-}
-.left {
-    background-color: #e9ebee;
-}
+/* .left {
+} */
 .right {
     background-color: white;
     height: 100%;
-}
-.right h1 {
-    font-weight: 800;
-    text-align: center;
     overflow: scroll;
 }
 .grid-container {
     display: grid;
     grid-template-columns: 35% 65%;
+}
+.header {
+    font-weight: 800;
+    text-align: center;
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #e9ebee;
+    font-size: 3em;
+}
+.inlineDiv {
+    display: inline;
+    font-size: 2.5em;
+    font-weight: 800;
+}
+.inlineDiv span {
+    margin-left: 10%;
+}
+.footer {
+    background-color: #e9ebee;
+}
+.cancelButton {
+    background-color: white;
+    color: rgb(62, 62, 199);
 }
 @media screen and (max-width:1100px) {
     .grid-container {

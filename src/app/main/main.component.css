@@ -61,6 +61,7 @@ path:hover {
     color: white;
     border: none;
     font-size: large;
+    cursor: pointer;
 }
 .sidenavDiv {
     padding: 20px;
